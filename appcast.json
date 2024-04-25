@@ -4,7 +4,7 @@
         {
             "version": "0.2.0",
             "desc": "04/25/2024 v2",
-            "sha256": "08e30e78c36bc629bd3213c7d7a73bad5d79e5aeae7f239ad6aeeb4b71d24898",
+            "sha256": "766d4c8bce51f73f653a4cc8549a9437016d038c20e83f7181eab742cc99d9c4",
             "url": "https://github.com/kentonson/bob-plugin-groq-translate/releases/download/v0.2.0/bob-plugin-groq-translate-v0.2.0.bobplugin.zip",
             "minBobVersion": "1.8.0"
         },
