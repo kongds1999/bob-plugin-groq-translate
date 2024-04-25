@@ -16,17 +16,17 @@
 1. 下载安装此插件
 2. 获取 [Groq API](https://console.groq.com/keys) 的 API KEY
 
-![image-20240425195737758](https://p.ipic.vip/h3hrsg.png)
+![image-20240425195737758](./assets/groqapi.png)
 
 3. 将 API KEY 填入 Bob 偏好设置 > 服务 > 此插件配置界面的 API KEY 的输入框中
 
-![image-20240425195855409](https://p.ipic.vip/a3ewye.png)
+![image-20240425195855409](./assets/bobapi.png)
 
 ## Notes
 
 得益于`GroqCloud`本身巨快的推理速度，结合最新开源模型`llama3`，目前性价比超高（Groq API目前免费，但有速率限制，个人使用足够）。
 
-![Image](https://pbs.twimg.com/profile_banners/842860575289819136/1703180970/1500x500)
+![image-20240425195855409](./assets/groqcloud.png)
 
 ## 感谢
 
