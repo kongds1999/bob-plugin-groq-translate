@@ -14,6 +14,9 @@
 ## 使用
 
 1. 下载安装此插件
+
+	![image-20240425195737758](./assets/plugin.png)
+
 2. 获取 [Groq API](https://console.groq.com/keys) 的 API KEY
 
 ![image-20240425195737758](./assets/groqapi.png)
