@@ -5,7 +5,7 @@
             "version": "0.1.0",
             "desc": "04/25/2024",
             "sha256": "2cd3f2ee252cdb4d2b0f93a940e9eaa9e632d6375763a9b62f277157182c5ff2",
-            "url": "https://github.com/missuo/bob-plugin-cohere/releases/download/v1.0.0/bob-plugin-cohere-1.0.0.bobplugin",
+            "url": "https://github.com/kentonson/bob-plugin-groq-translate/releases/download/v0.1.0/bob-plugin-groq-translate-v0.1.0.bobplugin.zip",
             "minBobVersion": "1.8.0"
         }
     ]
