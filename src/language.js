@@ -1,13 +1,3 @@
-/*
- * @Author: kongds
- * @Date: 2024-04-23 21:44:05
- * @LastEditors: kongds
- * @LastEditTime: 2024-04-23 21:44:05
- * @FilePath: /bob-plugin-copilot/src/language.js
- * @GitHub: https://github.com/kentonson
- * 
- * Copyright © 2024 by kongds, All Rights Reserved. 
- */
 
 const supportLanguages = [
   ["auto", "auto"],

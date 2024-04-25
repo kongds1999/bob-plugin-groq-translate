@@ -1,8 +1,8 @@
-# Groq-translate-bobplugin
+# Groq-translate-bob-plugin
 
 
 
-基于 [Groq API](https://console.groq.com/keys) 实现的 Bob 翻译插件。
+基于 [Groq API](https://console.groq.com/keys) 的 Bob 翻译插件。
 
 ### 可选模型
 
