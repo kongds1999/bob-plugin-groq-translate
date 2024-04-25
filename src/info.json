@@ -1,0 +1,90 @@
+{
+  "identifier": "brian.bob-plugin-groq-translate",
+  "category": "translate",
+  "version": "0.1.0",
+  "name": "Groq",
+  "summary": "使用 Groq API 进行翻译",
+  "author": "kongds",
+  "homepage": "https://github.com/kentonson/bob-plugin-groq-translate",
+  "appcast": "https://github.com/kentonson/bob-plugin-groq-translate/raw/main/appcast.json",
+  "icon": "icon.png",
+  "minBobVersion": "1.8.0",
+  "options": [
+    {
+      "identifier": "API_KEY",
+      "type": "text",
+      "title": "API Key",
+      "desc": "输入在https://console.groq.com/keys申请的 API Key",
+      "textConfig": {
+        "type": "secure"
+      }
+    },
+    {
+      "identifier": "BaseURL",
+      "type": "text",
+      "title": "自定义 API URL",
+      "defaultValue": "https://api.groq.com/openai/v1",
+      "desc": "默认使用官方 API, 若使用代理, 请修改",
+      "textConfig": {
+        "type": "visible"
+      }
+    },
+    {
+      "identifier": "model",
+      "type": "menu",
+      "title": "模型",
+      "defaultValue": "llama3-8b-8192",
+      "menuValues": [
+        {
+          "title": "llama3-8b-8192",
+          "value": "llama3-8b-8192"
+        },
+        {
+          "title": "llama3-70b-8192",
+          "value": "llama3-70b-8192"
+        },
+        {
+          "title": "mixtral-8x7b-32768",
+          "value": "mixtral-8x7b-32768"
+        },
+        {
+          "title": "gemma-7b-it",
+          "value": "gemma-7b-it"
+        }
+      ]
+    },
+    {
+      "identifier": "mode",
+      "type": "menu",
+      "title": "模式",
+      "defaultValue": "1",
+      "desc": "请选择工作的模式",
+      "menuValues": [
+        {
+          "title": "翻译",
+          "value": "1"
+        },
+        {
+          "title": "文字润色",
+          "value": "2"
+        },
+        {
+          "title": "聊天",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "identifier": "CustomePrompt",
+      "type": "text",
+      "title": "CustomPrompt",
+      "defaultValue": "",
+      "desc": "",
+      "textConfig": {
+        "type": "visible",
+        "height": "60",
+        "placeholderText": "你是一个翻译引擎, 尽管翻译内容, 不要解释, 不要使用任何说明"
+      }
+    }
+  ]
+}
