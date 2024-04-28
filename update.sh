@@ -1,11 +1,15 @@
 # 1- Fuck Mac 存储, 先清理文件
+echo "清理.DS_Store"
 find ./src -name ".DS_Store" -delete
+
 # 2- 生成新版本插件
+echo "生成新版本..."
 version=$1
 desc=$2
 zip -r -j ../plugin/bob-plugin-groq-translate-v$version.bobplugin src/*
 
 # 3- 校验, 更新appcast
+echo "更新校验..."
 sha256=$(shasum -a 256 bob-plugin-groq-translate-v$version.bobplugin | cut -d ' ' -f 1)
 
 download="https://github.com/kentonson/bob-plugin-groq-translate/releases/download/v$version/bob-plugin-groq-translate-v$version.bobplugin"
@@ -29,11 +33,13 @@ jq --arg new_version "$version" '.version = $new_version' ./src/info.json > ./sr
 
 find . -name ".DS_Store" -delete
 # 5- 打包
+echo "打包"
 if [ ! -d "../package/$version" ]; then mkdir ../package/$version; fi
 zip -r ../package/$version/Source\ code.zip src/
 tar -zcvf ../package/$version/Source\ code.tar.gz src/
 
 # 6- push
+echo "更新rep"
 find . -name ".DS_Store" -delete
 rm -r .vscode
 git add .
@@ -41,8 +47,7 @@ git commit -m "update to $version"
 git push origin main
 
 # 7- 更新github release
+echo "release..."
 gh release create v$version ../plugin/bob-plugin-groq-translate-v0.3.0.bobplugin\
-                            ../package/$version/Source\ code.zip \
-                            ../package/$version/Source\ code.tar.gz \
      -t "v$version" -n "$desc"
 
