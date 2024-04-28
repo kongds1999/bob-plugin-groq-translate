@@ -10,7 +10,7 @@ zip -r -j ../plugin/bob-plugin-groq-translate-v$version.bobplugin src/*
 
 # 3- 校验, 更新appcast
 echo "更新校验..."
-sha256=$(shasum -a 256 bob-plugin-groq-translate-v$version.bobplugin | cut -d ' ' -f 1)
+sha256=$(shasum -a 256 ../plugin/bob-plugin-groq-translate-v$version.bobplugin | cut -d ' ' -f 1)
 
 download="https://github.com/kentonson/bob-plugin-groq-translate/releases/download/v$version/bob-plugin-groq-translate-v$version.bobplugin"
 
