@@ -48,6 +48,8 @@ git push origin main
 
 # 7- 更新github release
 echo "release..."
-gh release create v$version ../plugin/bob-plugin-groq-translate-v0.3.0.bobplugin\
+gh release create v$version ../plugin/bob-plugin-groq-translate-v$version.bobplugin\
+                            ../package/v$version/Source\ code.tar.gz \
+                            ../package/v$version/Source\ code.zip \
      -t "v$version" -n "$desc"
 
