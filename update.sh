@@ -1,3 +1,6 @@
+# ---------------------------------------
+# 使用示例: bash update.sh 1.0.0 "更新说明"
+# ---------------------------------------
 # 1- Fuck Mac 存储, 先清理文件
 echo "清理.DS_Store"
 find ./src -name ".DS_Store" -delete
@@ -6,7 +9,7 @@ find ./src -name ".DS_Store" -delete
 echo "生成新版本..."
 version=$1
 desc=$2
-zip -r -j ../plugin/bob-plugin-groq-translate-v$version.bobplugin src/*
+zip -r -j ../plugin/bob-plugin-groq-translate-v$version.bobplugin src/* && 
 
 # 3- 校验, 更新appcast
 echo "更新校验..."
@@ -23,12 +26,12 @@ json_data=$(cat $json_file)
 
 updated_json=$(echo $json_data | jq --argjson new_version "$new_version" '.versions = [$new_version] + .versions')
 
-echo $updated_json > $json_file
+echo $updated_json > $json_file && 
 # ---------------
 
 # ---------------
 # 4- 更新info.json
-jq --arg new_version "$version" '.version = $new_version' ./src/info.json > ./src/temp.json && mv ./src/temp.json ./src/info.json
+jq --arg new_version "$version" '.version = $new_version' ./src/info.json > ./src/temp.json && mv ./src/temp.json ./src/info.json &&
 # ---------------
 
 find . -name ".DS_Store" -delete
@@ -36,15 +39,15 @@ find . -name ".DS_Store" -delete
 echo "打包"
 if [ ! -d "../package/$version" ]; then mkdir ../package/$version; fi
 zip -r ../package/$version/Source\ code.zip src/
-tar -zcvf ../package/$version/Source\ code.tar.gz src/
+tar -zcvf ../package/$version/Source\ code.tar.gz src/ && 
 
 # 6- push
 echo "更新rep"
 find . -name ".DS_Store" -delete
 rm -r .vscode
-git add .
-git commit -m "update to $version"
-git push origin main
+git add .   &&
+git commit -m "update to $version $desc" &&
+git push origin main &&
 
 # 7- 更新github release
 echo "release..."

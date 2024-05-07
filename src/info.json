@@ -1,7 +1,7 @@
 {
   "identifier": "brian.bob-plugin-groq-translate",
   "category": "translate",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "name": "Groq",
   "summary": "使用 Groq API 进行翻译",
   "author": "kongds",
@@ -61,16 +61,20 @@
       "desc": "请选择工作的模式",
       "menuValues": [
         {
-          "title": "翻译",
+          "title": "translate",
           "value": "1"
         },
         {
-          "title": "文字润色",
+          "title": "polish",
           "value": "2"
         },
         {
-          "title": "聊天",
+          "title": "chat",
           "value": "3"
+        },
+        {
+          "title": "自定义prompt",
+          "value": "4"
         }
       ]
     },
@@ -83,7 +87,7 @@
       "textConfig": {
         "type": "visible",
         "height": "60",
-        "placeholderText": "你是一个翻译引擎, 尽管翻译内容, 不要解释, 不要使用任何说明"
+        "placeholderText": "选择自定义prompt模式时生效, 在这里输入你的prompt。源语言为${sourceLang}, 目标语言为${targetLang}, 原文为${sourceText}, 译文为${targetText}。"
       }
     }
   ]
