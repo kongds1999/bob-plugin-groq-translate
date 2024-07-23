@@ -33,19 +33,23 @@
       "identifier": "model",
       "type": "menu",
       "title": "模型",
-      "defaultValue": "llama3-8b-8192",
+      "defaultValue": "llama-3.1-8b-instant",
       "menuValues": [
         {
           "title": "gemma2-9b-it",
           "value": "gemma2-9b-it"
         },
         {
-          "title": "llama3-8b-8192",
-          "value": "llama3-8b-8192"
+          "title": "llama-3.1-8b-instant",
+          "value": "llama-3.1-8b-instant"
         },
         {
-          "title": "llama3-70b-8192",
-          "value": "llama3-70b-8192"
+          "title": "llama-3.1-70b-versatile",
+          "value": "llama-3.1-70b-versatile"
+        },
+        {
+          "title": "llama-3.1-405b-reasoning",
+          "value": "llama-3.1-405b-reasoning"
         },
         {
           "title": "mixtral-8x7b-32768",
