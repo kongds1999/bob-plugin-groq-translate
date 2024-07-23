@@ -7,8 +7,9 @@
 ### 可选模型
 
 * `gemma2-9b-it` ：更新支持, 谷歌最新开源, 2024 / 07 /07
-* `llama3-8b-8192` (默认)：兼具质量和速度
-* `llama3-70b-8192`：效果更好，但速度不如`llama3-8b-8192`
+* `llama-3.1-8b-instant` (默认)：兼具质量和速度
+* `llama-3.1-70b-versatile`：效果更好，但速度不如`llama-3.1-8b-instant`
+* `llama-3.1-405b-reasoning`: 效果最好，但速度最慢
 * `mixtral-8x7b-32768`
 * `gemma-7b-it`
 
