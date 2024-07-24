@@ -37,7 +37,7 @@ find . -name ".DS_Store" -delete
 echo "代码打包"
 if [ ! -d "../package/$version" ]; then mkdir ../package/$version; fi
 zip -r ../package/$version/Source\ code.zip src/
-tar -zcvf ../package/$version/Source\ code.tar.gz src/ && 
+tar -zcvf ../package/$version/Source\ code.tar.gz src/ 
 
 # 6- push
 echo "更新rep"

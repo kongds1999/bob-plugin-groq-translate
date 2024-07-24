@@ -1,4 +1,29 @@
 var lang = require("./language.js");
+var HttpErrorCodes = require("./err.js").HttpErrorCodes;
+
+function handleGeneralError(query, error) {
+  if ('response' in error) {
+    // 处理 HTTP 响应错误
+    const { statusCode } = error.response;
+    const reason = (statusCode >= 400 && statusCode < 500) ? "param" : "api";
+    query.onCompletion({
+      error: {
+        type: reason,
+        message: `接口响应错误 - ${HttpErrorCodes[statusCode]}`,
+        addition: `${JSON.stringify(error)}`,
+      },
+    });
+  } else {
+    // 处理一般错误
+    query.onCompletion({
+      error: {
+        ...error,
+        type: error.type || "unknown",
+        message: error.message || "Unknown error",
+      },
+    });
+  }
+}
 
 function supportLanguages() {
   return lang.supportLanguages.map(([standardLang]) => standardLang);
@@ -119,26 +144,53 @@ function handleResponse(query, targetText, textFromResponse) {
         });
       }
     } catch (err) {
-      query.onCompletion({
-        error: {
-          type: err._type || "param",
-          message: err._message || "Failed to parse JSON",
-          addtion: err._addition,
-        },
+      handleGeneralError(query, {
+        type: err.type || "param",
+        message: err.message || "Failed to parse JSON",
+        addition: err.addition,
       });
     }
   }
   return targetText;
 }
 
+function handleGeneralResponse( query, result) {
+  const { choices } = result.data;
+
+  if (!choices || choices.length === 0) {
+      handleGeneralError(query, {
+          type: "api",
+          message: "接口未返回结果",
+          addition: JSON.stringify(result),
+      });
+      return;
+  }
+
+  let targetText = choices[0].message.content.trim();
+
+  // 使用正则表达式删除字符串开头和结尾的特殊字符
+  targetText = targetText.replace(/^(『|「|"|“)|(』|」|"|”)$/g, "");
+
+  // 判断并删除字符串末尾的 `" =>`
+  if (targetText.endsWith('" =>')) {
+      targetText = targetText.slice(0, -4);
+  }
+
+  query.onCompletion({
+      result: {
+          from: query.detectFrom,
+          to: query.detectTo,
+          toParagraphs: targetText.split("\n"),
+      },
+  });
+}
+
 function translate(query) {
   if (!lang.langMap.get(query.detectTo)) {
-    query.onCompletion({
-      error: {
-        type: "unsupportLanguage",
-        message: "不支持该语种",
-        addtion: "不支持该语种",
-      },
+    handleGeneralError(query, {
+      type: "unsupportLanguage",
+      message: "不支持该语种",
+      addition: "不支持该语种",
     });
   }
 
@@ -151,59 +203,81 @@ function translate(query) {
   } = $option;
   const APIUrlPath = "/chat/completions";
 
+  if (!API_KEY) {
+    handleGeneralError(query, {
+        type: "secretKey",
+        message: "配置错误 - 请确保您在插件配置中填入了正确的 API Keys",
+        addition: "请在插件配置中填写 API_KEY",
+    });
+}
+
   const header = buildHeader(API_KEY);
   const body = buildRequestBody(model, mode, CustomePrompt, query);
 
   let targetText = ""; // 初始化拼接结果变量
   let buffer = "";
+  let stream = true; // 默认使用流式响应
   (async () => {
-    await $http.streamRequest({
-      method: "POST",
-      url: BaseURL + APIUrlPath,
-      header,
-      body: body,
-      cancelSignal: query.cancelSignal,
-      streamHandler: (streamData) => {
-        if (streamData.text.includes("Invalid token")) {
-          query.onCompletion({
-            error: {
+    if(stream){
+      await $http.streamRequest({
+        method: "POST",
+        url: BaseURL + APIUrlPath,
+        header,
+        body: body,
+        cancelSignal: query.cancelSignal,
+        streamHandler: (streamData) => {
+          if (streamData.text.includes("Invalid token")) {
+            handleGeneralError(query, {
               type: "secretKey",
-              message: "配置错误 - 请确保您在插件配置中填入了正确的 API Keys",
-              addtion: "请在插件配置中填写正确的 API Keys",
-            },
-          });
-        } else {
-          // 将新的数据添加到缓冲变量中
-          buffer += streamData.text;
-          // 检查缓冲变量是否包含一个完整的消息
-          while (true) {
-            const match = buffer.match(/data: (.*?})\n/);
-            if (match) {
-              // 如果是一个完整的消息，处理它并从缓冲变量中移除
-              const textFromResponse = match[1].trim();
-              targetText = handleResponse(query, targetText, textFromResponse);
-              buffer = buffer.slice(match[0].length);
-            } else {
-              // 如果没有完整的消息，等待更多的数据
-              break;
+              message: "配置错误 - 请确保您在插件配置中填入了正确的 API_KEY",
+              addition: "请在插件配置中填写正确的 API_KEY",
+            });
+          } else {
+            // 将新的数据添加到缓冲变量中
+            buffer += streamData.text;
+            // 检查缓冲变量是否包含一个完整的消息
+            while (true) {
+              const match = buffer.match(/data: (.*?})\n/);
+              if (match) {
+                // 如果是一个完整的消息，处理它并从缓冲变量中移除
+                const textFromResponse = match[1].trim();
+                targetText = handleResponse(query, targetText, textFromResponse);
+                buffer = buffer.slice(match[0].length);
+              } else {
+                // 如果没有完整的消息，等待更多的数据
+                break;
+              }
             }
           }
+        },
+        handler: (result) => {
+          if (result.response.statusCode >= 400) {
+            handleGeneralError(query, result);
+          } else {
+            query.onCompletion({
+              result: {
+                from: query.detectFrom,
+                to: query.detectTo,
+                toParagraphs: [targetText],
+              },
+            });
+          }
         }
-      },
-      handler: (result) => {
-        if (result.response.statusCode >= 400) {
-          handleError(query, result);
-        } else {
-          query.onCompletion({
-            result: {
-              from: query.detectFrom,
-              to: query.detectTo,
-              toParagraphs: [targetText],
-            },
-          });
-        }
-      }
+      });
+    } else {
+    const result = await $http.request({
+        method: "POST",
+        url: baseUrl + apiUrlPath,
+        header,
+        body,
     });
+
+    if (result.error) {
+        handleGeneralError(query, result);
+    } else {
+        handleGeneralResponse(query, result);
+    }
+  }
   })().catch((err) => {
     handleGeneralError(query, err);
   });

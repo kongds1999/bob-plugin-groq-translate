@@ -1,7 +1,7 @@
 {
   "identifier": "brian.bob-plugin-groq-translate",
   "category": "translate",
-  "version": "0.7.4",
+  "version": "1.0.0",
   "name": "Groq",
   "summary": "使用 Groq API 进行翻译",
   "author": "kongds",
