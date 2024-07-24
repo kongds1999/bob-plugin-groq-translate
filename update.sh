@@ -1,14 +1,22 @@
 # ---------------------------------------
 # 使用示例: bash update.sh 1.0.0 "更新说明"
 # ---------------------------------------
+set -e
+
+# 检查参数
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <version> <description>"
+    exit 1
+fi
+version=$1
+desc=$2
+
 # 1- Fuck Mac 存储, 先清理文件
 echo "清理.DS_Store"
 find ./src -name ".DS_Store" -delete
 
 # 2- 生成新版本插件
 echo "生成新版本..."
-version=$1
-desc=$2
 zip -r -j ../plugin/bob-plugin-groq-translate-v$version.bobplugin src/* && 
 
 # 3- 校验, 更新appcast
@@ -44,7 +52,7 @@ tar -zcvf ../package/$version/Source\ code.tar.gz src/ &&
 # 6- push
 echo "更新rep"
 find . -name ".DS_Store" -delete
-rm -r .vscode
+rm -r .vscode || true
 git add .   &&
 git commit -m "update to $version $desc" &&
 git push origin main &&
