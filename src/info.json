@@ -1,7 +1,7 @@
 {
   "identifier": "brian.bob-plugin-groq-translate",
   "category": "translate",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "name": "Groq",
   "summary": "使用 Groq API 进行翻译",
   "author": "kongds",
@@ -56,12 +56,12 @@
           "value": "llama3-70b-8192"
         },
         {
-          "title": "llama3-groq-70b-8192-tooluse-preview",
-          "value": "llama3-groq-70b-8192-tooluse-preview"
+          "title": "llama3-groq-70b-8192-tool-use-preview",
+          "value": "llama3-groq-70b-8192-tool-use-preview"
         },
         {
-          "title": "llama3-groq-8b-8192-tooluse-preview",
-          "value": "llama3-groq-8b-8192-tooluse-preview"
+          "title": "llama3-groq-8b-8192-tool-use-preview",
+          "value": "llama3-groq-8b-8192-tool-use-preview"
         },
         {
           "title": "mixtral-8x7b-32768",
