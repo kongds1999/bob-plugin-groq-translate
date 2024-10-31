@@ -20,7 +20,7 @@
 * `llama3-8b-8192`：兼具质量和速度
 * `llama3-70b-8192`：效果更好，但速度不如`llama3-8b-8192`
 * `llama3-groq-70b-8192-tooluse-preview`: Groq官方微调的可使用其他工具调用的测试版本
-* `llama3-groq-70b-8192-tooluse-preview`: Groq测试版小杯
+* `llama3-groq-8b-8192-tooluse-preview`: Groq测试版小杯
 * `mixtral-8x7b-32768`
 * `gemma2-9b-it` ：更新支持, 谷歌最新开源, 2024 / 07 /07
 * `gemma-7b-it`
