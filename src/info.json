@@ -1,7 +1,7 @@
 {
   "identifier": "brian.bob-plugin-groq-translate",
   "category": "translate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Groq",
   "summary": "使用 Groq API 进行翻译",
   "author": "kongds",
@@ -36,10 +36,6 @@
       "defaultValue": "llama-3.1-8b-instant",
       "menuValues": [
         {
-          "title": "llama-3.1-405b-reasoning",
-          "value": "llama-3.1-405b-reasoning"
-        },
-        {
           "title": "llama-3.1-70b-versatile",
           "value": "llama-3.1-70b-versatile"
         },
@@ -48,12 +44,36 @@
           "value": "llama-3.1-8b-instant"
         },
         {
-          "title": "llama3-8b-8192",
-          "value": "llama3-8b-8192"
+          "title": "llama-3.2-11b-text-preview",
+          "value": "llama-3.2-11b-text-preview"
+        },
+        {
+          "title": "llama-3.2-11b-vision-preview",
+          "value": "llama-3.2-11b-vision-preview"
+        },
+        {
+          "title": "llama-3.2-1b-preview",
+          "value": "llama-3.2-1b-preview"
+        },
+        {
+          "title": "llama-3.2-3b-preview",
+          "value": "llama-3.2-3b-preview"
+        },
+        {
+          "title": "llama-3.2-90b-text-preview",
+          "value": "llama-3.2-90b-text-preview"
+        },
+        {
+          "title": "llama-3.2-90b-vision-preview",
+          "value": "llama-3.2-90b-vision-preview"
         },
         {
           "title": "llama3-70b-8192",
           "value": "llama3-70b-8192"
+        },
+        {
+          "title": "llama3-8b-8192",
+          "value": "llama3-8b-8192"
         },
         {
           "title": "llama3-groq-70b-8192-tool-use-preview",

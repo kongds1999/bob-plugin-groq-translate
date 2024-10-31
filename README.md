@@ -7,8 +7,14 @@
 ![image-20240425195855409](./assets/groqcloud.png)
 
 ### 可选模型
+新增`llama-3.2`系列模型
+* `llama-3.2-11b-text-preview`
+* `llama-3.2-11b-vision-preview`
+* `llama-3.2-1b-preview`
+* `llama-3.2-3b-preview`
+* `llama-3.2-90b-text-preview`
+* `llama-3.2-90b-vision-preview`
 
-* `llama-3.1-405b-reasoning`: Meta最新最大的 model，质量最高
 * `llama-3.1-70b-versatile`： llama-3.1的最新中杯🥤，兼具质量和速度
 * `llama-3.1-8b-instant`: (最新默认)，速度快，质量也不错
 * `llama3-8b-8192`：兼具质量和速度
