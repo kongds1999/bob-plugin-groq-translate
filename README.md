@@ -8,20 +8,22 @@
 
 ### 可选模型
 新增`llama-3.2`系列模型
-* `llama-3.2-11b-text-preview`
 * `llama-3.2-11b-vision-preview`
 * `llama-3.2-1b-preview`
 * `llama-3.2-3b-preview`
 * `llama-3.2-90b-text-preview`
 * `llama-3.2-90b-vision-preview`
 
-* `llama-3.1-70b-versatile`： llama-3.1的最新中杯🥤，兼具质量和速度
-* `llama-3.1-8b-instant`: (最新默认)，速度快，质量也不错
+* `llama-3.1-70b-versatile`： (最新默认), llama-3.1的最新中杯🥤，兼具质量和速度
+* `llama-3.1-8b-instant`: 速度快，质量也不错
 * `llama3-8b-8192`：兼具质量和速度
 * `llama3-70b-8192`：效果更好，但速度不如`llama3-8b-8192`
 * `llama3-groq-70b-8192-tooluse-preview`: Groq官方微调的可使用其他工具调用的测试版本
 * `llama3-groq-8b-8192-tooluse-preview`: Groq测试版小杯
+* `llama-guard-3-8b`: 安全版
+
 * `mixtral-8x7b-32768`
+
 * `gemma2-9b-it` ：更新支持, 谷歌最新开源, 2024 / 07 /07
 * `gemma-7b-it`
 
