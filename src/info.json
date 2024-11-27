@@ -1,7 +1,7 @@
 {
   "identifier": "brian.bob-plugin-groq-translate",
   "category": "translate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Groq",
   "summary": "使用 Groq API 进行翻译",
   "author": "kongds",
@@ -33,8 +33,12 @@
       "identifier": "model",
       "type": "menu",
       "title": "模型",
-      "defaultValue": "llama-3.1-8b-instant",
+      "defaultValue": "llama-3.1-70b-specdec",
       "menuValues": [
+        {
+          "title": "llama-3.1-70b-specdec",
+          "value": "llama-3.1-70b-specdec"
+        },
         {
           "title": "llama-3.1-70b-versatile",
           "value": "llama-3.1-70b-versatile"
@@ -60,12 +64,12 @@
           "value": "llama-3.2-3b-preview"
         },
         {
-          "title": "llama-3.2-90b-text-preview",
-          "value": "llama-3.2-90b-text-preview"
-        },
-        {
           "title": "llama-3.2-90b-vision-preview",
           "value": "llama-3.2-90b-vision-preview"
+        },
+        {
+          "title": "llama-guard-3-8b",
+          "value": "llama-guard-3-8b"
         },
         {
           "title": "llama3-70b-8192",
@@ -88,12 +92,12 @@
           "value": "mixtral-8x7b-32768"
         },
         {
-          "title": "gemma2-9b-it",
-          "value": "gemma2-9b-it"
-        },
-        {
           "title": "gemma-7b-it",
           "value": "gemma-7b-it"
+        },
+        {
+          "title": "gemma2-9b-it",
+          "value": "gemma2-9b-it"
         }
       ]
     },
