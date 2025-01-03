@@ -1,6 +1,10 @@
 # Groq-translate-bob-plugin
 
+#################################
 
+`Bob` 官方已支持`Groq`插件，本仓库将不再更新
+
+#################################
 
 基于 [Groq API](https://console.groq.com/keys) 的 Bob 翻译插件。
 
